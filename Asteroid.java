@@ -29,6 +29,7 @@ public class Asteroid extends SmoothMover
     public Asteroid(int size)
     {
         super(new Vector(Greenfoot.getRandomNumber(360), 2));
+        setSize(size);
     }
     
     /**
@@ -37,7 +38,7 @@ public class Asteroid extends SmoothMover
     public Asteroid(int size, Vector velocity)
     {
         super(velocity);
-        //changeimage(size);
+        setSize(size);
     }
     
     public void act()
@@ -48,7 +49,7 @@ public class Asteroid extends SmoothMover
     /**
      * Set the size of this asteroid. Note that stability is directly
      * related to size. Smaller asteroids are less stable.
-     *
+     */
     public void setSize(int size) 
     {
         stability = size;
@@ -91,7 +92,17 @@ public class Asteroid extends SmoothMover
         }
         else {
             int r = getVelocity().getDirection() + Greenfoot.getRandomNumber(45);
-            double l ;
+            double l = getVelocity().getLength();
+            Vector speed1 = new Vector(r + 60, l * 1.2);
+            Vector speed2 = new Vector(r - 60, l * 1.2);        
+            Asteroid a1 = new Asteroid(size/2, speed1);
+            Asteroid a2 = new Asteroid(size/2, speed2);
+            getWorld().addObject(a1, getX(), getY());
+            getWorld().addObject(a2, getX(), getY());        
+            a1.move();
+            a2.move();
+        
+            getWorld().removeObject(this);
         }
     }
 }

@@ -11,23 +11,23 @@ import greenfoot.*;
  */
 public class Rocket extends SmoothMover
 {
-    private static final int gunReloadTime = 12;         // The minimum delay between firing the gun.
+    private static final int gunReloadTime = 5;         // The minimum delay between firing the gun.
     private static final int protonReloadTime = 500;    // The minimum delay between proton wave bursts.
 
     private int reloadDelayCount;               // How long ago we fired the gun the last time.
     private int protonDelayCount;               // How long ago we fired the proton wave the last time.
     
-    private GreenfootImage rocket = new GreenfootImage("republic_gunship.png");    
-    private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
+    private GreenfootImage rocket = new GreenfootImage("Viper.png");    
+    private GreenfootImage rocketWithThrust = new GreenfootImage("rockeThruster.png");
 
     /**
      * Initialise this rocket.
      */
     public Rocket()
     {
-        reloadDelayCount = 5;
+        reloadDelayCount = 6;
         protonDelayCount = 500;
-        addToVelocity(new Vector(13, 0.7));    // initially slowly drifting
+        addToVelocity(new Vector());    // initially slowly drifting
     }
 
     /**
@@ -52,11 +52,11 @@ public class Rocket extends SmoothMover
         
         if (Greenfoot.isKeyDown("left")) 
         {
-            turn(-5);
+            turn(-8);
         }
         if (Greenfoot.isKeyDown("right")) 
         {
-            turn(5);
+            turn(8);
         }
         if (Greenfoot.isKeyDown("space")) 
         {
@@ -91,7 +91,7 @@ public class Rocket extends SmoothMover
         if (boosterOn) 
         {
             setImage(rocketWithThrust);
-            addToVelocity(new Vector(getRotation(), 10));
+            addToVelocity(new Vector(getRotation(), 0.25));
         }
         else 
         {

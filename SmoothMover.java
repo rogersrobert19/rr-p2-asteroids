@@ -108,7 +108,7 @@ public abstract class SmoothMover extends Actor
     public void accelerate(double factor)
     {
         velocity.scale(factor);
-        if (velocity.getLength() < 0.15) 
+        if (velocity.getLength() < 0.) 
         {
             velocity.setNeutral();
         }
